@@ -22,7 +22,7 @@ function setup() {
   monkey = createSprite(80, displayHeight-75, 20, 20);
   monkey.addAnimation("running",monkey_running);
   monkey.scale = 0.1;
-  ground = createSprite(70, displayHeight-50, displayWidth-20, 10);
+  ground = createSprite(displayWidth/2, displayHeight-50, displayWidth-20, 10);
   console.log(ground.x);
   obstaclesGroup = createGroup();
   foodGroup = createGroup();
@@ -32,12 +32,13 @@ function setup() {
 
 
 function draw() {
-background("turquoise");
+background(jungleImage);
 if(gameState===PLAY){
   x = x+4;
   camera.position.x = displayWidth+x;
   camera.position.y = displayHeight/2;
   monkey.x = camera.position.x - 250;
+  ground.x = camera.position.x;
   if(keyDown("space")|| touches.length>0) {
         monkey.velocityY = -12;
     touches=[];
