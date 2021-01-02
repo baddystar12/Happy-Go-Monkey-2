@@ -39,21 +39,22 @@ if(gameState===PLAY){
   camera.position.y = displayHeight/2;
   monkey.x = camera.position.x - 250;
   ground.x = camera.position.x;
+  jungleImage.x = camera.position.x;
   if(keyDown("space")|| touches.length>0) {
         monkey.velocityY = -12;
     touches=[];
   }
    monkey.velocityY = monkey.velocityY+1.2;
-  if(obstaclesGroup.isTouching(monkey)){
-    gameState=END;
-  }
   spawnObstacles();
   spawnBananas();
   ground.visible = true;
   }
-  /*if(frameCount>865){
+  /*if(frameCount>900){
     gameState = END;
   }*/
+  if(obstaclesGroup.isTouching(monkey)){
+    gameState = END;
+  }
   monkey.collide(ground);
   ground.visible=false;
   drawSprites();
@@ -75,7 +76,7 @@ function spawnObstacles(){
     obstacle = createSprite(500, height-70, 10, 40);
     obstacle.addImage(obstacleImage);
     obstacle.scale = 0.1;
-    obstacle.x = camera.position.x+100;
+    obstacle.x = camera.position.x+800;
     //add each obstacle to the group
      obstaclesGroup.add(obstacle);
    }
@@ -86,8 +87,8 @@ function spawnBananas(){
       banana = createSprite(width-40, height-85, 20, 20);
       banana.y = Math.round(random(displayHeight/2-50,displayHeight/2+50));
       banana.addImage(bananaImage);
-      banana.scale = 0.05;
-      banana.x = camera.position.x+100;
+      banana.scale = 0.1;
+      banana.x = camera.position.x+800;
       banana.depth = monkey.depth;
       monkey.depth = monkey.depth + 1;
       foodGroup.add(banana);
